@@ -1,0 +1,7 @@
+name: BasicPvPKits
+version: '${project.version}'
+main: me.zenithatic.basicpvpkits.BasicPvPKits
+api-version: 1.19
+authors: [ Zenithatic ]
+description: A simple spigot plugin that adds non-op vanilla kits into your server.
+website: https://github.com/Zenithatic
