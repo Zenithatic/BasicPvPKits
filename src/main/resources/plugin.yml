@@ -8,5 +8,9 @@ website: https://github.com/Zenithatic
 commands:
   die:
     description: Kills the player in case the player is stuck.
-    usage: "Usage: /<command>"
+    usage: "/<command>"
     aliases: respawn
+  echest:
+    description: Opens the player's enderchest
+    usage: "/<command>"
+    aliases: [ec, enderchest]

@@ -1,0 +1,6 @@
+ServerName: 'Server'
+CustomWelcome: true
+CustomGoodbye: true
+NewPlayerWelcome: true
+EnableEChestCommand: true
+EnableDieCommand: true

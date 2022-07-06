@@ -1,8 +1,10 @@
 package me.zenithatic.basicpvpkits;
 
 import me.zenithatic.basicpvpkits.commands.DieCommand;
+import me.zenithatic.basicpvpkits.commands.EChestCommand;
 import me.zenithatic.basicpvpkits.listeners.ServerTrafficListener;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,11 +16,16 @@ public final class BasicPvPKits extends JavaPlugin implements Listener {
         // Indicate that plugin is ready
         Bukkit.getLogger().info("BasicPvPKits Loaded!");
 
+        // Load up config
+        this.getConfig().options().copyDefaults();
+        saveDefaultConfig();
+
         // Register event handlers for the plugin
-        this.getServer().getPluginManager().registerEvents(new ServerTrafficListener(), this);
+        this.getServer().getPluginManager().registerEvents(new ServerTrafficListener(this.getConfig()), this);
 
         // Register commands
-        this.getCommand("die").setExecutor(new DieCommand());
+        this.getCommand("die").setExecutor(new DieCommand(this.getConfig()));
+        this.getCommand("echest").setExecutor(new EChestCommand(this.getConfig()));
     }
 
     // Plugin shutdown logic
@@ -27,5 +34,4 @@ public final class BasicPvPKits extends JavaPlugin implements Listener {
         // Indicate that plugin is unloaded
         Bukkit.getLogger().info("BasicPvPKits Unloaded!");
     }
-
 }
