@@ -1,5 +1,6 @@
 package me.zenithatic.basicpvpkits;
 
+import me.zenithatic.basicpvpkits.commands.DieCommand;
 import me.zenithatic.basicpvpkits.listeners.ServerTrafficListener;
 import org.bukkit.Bukkit;
 import org.bukkit.event.*;
@@ -15,6 +16,9 @@ public final class BasicPvPKits extends JavaPlugin implements Listener {
 
         // Register event handlers for the plugin
         this.getServer().getPluginManager().registerEvents(new ServerTrafficListener(), this);
+
+        // Register commands
+        this.getCommand("die").setExecutor(new DieCommand());
     }
 
     // Plugin shutdown logic

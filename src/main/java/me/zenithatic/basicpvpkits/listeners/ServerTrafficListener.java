@@ -14,15 +14,20 @@ public class ServerTrafficListener implements Listener {
         Player player = event.getPlayer();
 
         // Change default join message to custom message
-        event.setJoinMessage("Welcome " + player.getDisplayName() + " to the server!");
+        event.setJoinMessage(ChatColor.YELLOW + "" + ChatColor.BOLD + player.getDisplayName() + ChatColor.RESET + "" + ChatColor.YELLOW + "" + " has joined the server!");
 
-        // Send colored private message to player
-        player.sendMessage(ChatColor.YELLOW + "Hi, welcome to the server! If you need help with anything, contact the staff team.");
+        // Send colored private message to player if new player
+        if (player.hasPlayedBefore()){
+            return;
+        }
+        else{
+            player.sendMessage(ChatColor.DARK_GREEN + "" + ChatColor.ITALIC + "" + ChatColor.BOLD + "Hi, welcome to your first time on the server!");
+        }
     }
 
     // Player Quit Event
     @EventHandler()
     public void onPlayerQuit(PlayerQuitEvent event){
-        event.setQuitMessage("Goodbye, " + event.getPlayer().getDisplayName() + "!");
+        event.setQuitMessage(ChatColor.YELLOW + "Goodbye, " + ChatColor.BOLD + event.getPlayer().getDisplayName() + ChatColor.RESET + "" + ChatColor.YELLOW + "!");
     }
 }
