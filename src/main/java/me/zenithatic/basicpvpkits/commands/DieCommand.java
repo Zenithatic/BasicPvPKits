@@ -3,7 +3,6 @@ package me.zenithatic.basicpvpkits.commands;
 import org.bukkit.*;
 import org.bukkit.command.*;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 
 public class DieCommand implements CommandExecutor {

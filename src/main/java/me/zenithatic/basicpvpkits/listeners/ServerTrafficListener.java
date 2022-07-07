@@ -3,9 +3,7 @@ package me.zenithatic.basicpvpkits.listeners;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.WitherSkull;
 import org.bukkit.event.*;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.*;
 
 public class ServerTrafficListener implements Listener {
