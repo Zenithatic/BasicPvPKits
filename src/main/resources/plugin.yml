@@ -14,3 +14,9 @@ commands:
     description: Opens the player's enderchest
     usage: "/<command>"
     aliases: [ec, enderchest]
+  kits:
+    description: Gives player a list of available kits
+    usage: "/<command>"
+  kit:
+    description: Gives player a kit of their choice
+    usage: "/<command> [AxeKit/SwordKit]"

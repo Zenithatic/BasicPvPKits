@@ -2,6 +2,8 @@ package me.zenithatic.basicpvpkits;
 
 import me.zenithatic.basicpvpkits.commands.DieCommand;
 import me.zenithatic.basicpvpkits.commands.EChestCommand;
+import me.zenithatic.basicpvpkits.commands.KitCommand;
+import me.zenithatic.basicpvpkits.commands.KitsCommand;
 import me.zenithatic.basicpvpkits.listeners.ServerTrafficListener;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -26,6 +28,8 @@ public final class BasicPvPKits extends JavaPlugin implements Listener {
         // Register commands
         this.getCommand("die").setExecutor(new DieCommand(this.getConfig()));
         this.getCommand("echest").setExecutor(new EChestCommand(this.getConfig()));
+        this.getCommand("kit").setExecutor(new KitCommand(this.getConfig()));
+        this.getCommand("kits").setExecutor(new KitsCommand(this.getConfig()));
     }
 
     // Plugin shutdown logic
