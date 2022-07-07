@@ -1,5 +1,6 @@
 package me.zenithatic.basicpvpkits.commands;
 
+import me.zenithatic.basicpvpkits.listeners.KitRestriction;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -8,9 +9,11 @@ import org.bukkit.command.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import javax.lang.model.element.Name;
 import java.util.List;
 
 public class KitCommand implements CommandExecutor {
@@ -26,11 +29,23 @@ public class KitCommand implements CommandExecutor {
     // Listen for command
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
         // Check if kits are enabled in plugin config
         if (pluginConfig.getBoolean("EnableKits")){
+
             // Check if sender is valid player
             if (sender instanceof Player){
                 Player player = (Player) sender;
+
+                // Check if cooldowns are enabled on config
+                if (pluginConfig.getBoolean("OneKitPerLife")){
+
+                    // Check if player is on cooldown
+                    if (KitRestriction.isOnCooldown(player)){
+                        player.sendMessage(ChatColor.RED + "You may only claim one kit per life.");
+                        return true;
+                    }
+                }
 
                 // Check if 1 kit argument was provided
                 if (args.length != 1){
@@ -115,9 +130,17 @@ public class KitCommand implements CommandExecutor {
                 }
             }
 
+            // Make items disappear on death to prevent hybrids
+            ItemMeta meta = item.getItemMeta();
+            meta.addEnchant(Enchantment.VANISHING_CURSE, 1, true);
+            item.setItemMeta(meta);
+
             // Give player item
             player.getInventory().addItem(item);
         }
+
+        // Place player on cooldown
+        KitRestriction.putOnCooldown(player);
 
         // Notify player that they have received kit
         player.sendMessage(ChatColor.DARK_GREEN + "You have received kit " + kitName + "!");
