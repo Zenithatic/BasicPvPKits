@@ -19,4 +19,4 @@ commands:
     usage: "/<command>"
   kit:
     description: Gives player a kit of their choice
-    usage: "/<command> [AxeKit/SwordKit]"
+    usage: "/<command> [AxeKit/SwordKit/BowKit/CrossbowKit/TankKit]"

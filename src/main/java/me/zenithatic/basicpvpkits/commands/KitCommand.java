@@ -3,10 +3,16 @@ package me.zenithatic.basicpvpkits.commands;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.*;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
 import java.util.List;
 
 public class KitCommand implements CommandExecutor {
@@ -39,11 +45,23 @@ public class KitCommand implements CommandExecutor {
 
                     // Give Axe Kit
                     if (kitName.equals("axekit")){
-                        giveKit(player, "AxeKitItems");
+                        giveKit(player, "AxeKitItems", args[0]);
                     }
                     // Give Sword Kit
                     else if (kitName.equals("swordkit")){
-                        giveKit(player, "SwordKitItems");
+                        giveKit(player, "SwordKitItems", args[0]);
+                    }
+                    // Give Bow kit
+                    else if (kitName.equals("bowkit")){
+                        giveKit(player, "BowKitItems", args[0]);
+                    }
+                    // Give Crossbow kit
+                    else if (kitName.equals("crossbowkit")){
+                        giveKit(player, "CrossbowKitItems", args[0]);
+                    }
+                    // Give Tank kit
+                    else if (kitName.equals("tankkit")){
+                        giveKit(player, "TankKitItems", args[0]);
                     }
                     // if no valid kit given
                     else{
@@ -69,7 +87,7 @@ public class KitCommand implements CommandExecutor {
         return true;
     }
 
-    public void giveKit(Player player, String configKitName){
+    public void giveKit(Player player, String configKitName, String kitName){
         // Get kit items from config.yml
         List<String> itemList = pluginConfig.getStringList(configKitName);
 
@@ -80,9 +98,30 @@ public class KitCommand implements CommandExecutor {
             String itemName = itemData[0].toUpperCase();
             int itemAmount = Integer.parseInt(itemData[1]);
 
-            // Create ItemStack and give items to player
-            ItemStack items = new ItemStack(Material.getMaterial(itemName), itemAmount);
-            player.getInventory().addItem(items);
+            // Create ItemStack
+            ItemStack item = new ItemStack(Material.getMaterial(itemName), itemAmount);
+
+            // Check for custom enchants and apply
+            if (itemData.length >= 3){
+                for (int j = 2; j < itemData.length; j++){
+                    // Get enchant data
+                    String[] data = itemData[j].split("-");
+                    String enchantName = data[0];
+                    int enchantAmplifier = Integer.parseInt(data[1]);
+
+                    // Apply enchants
+                    ItemMeta meta = item.getItemMeta();
+                    // true means bypass the enchantment limit in vanilla, false means follow the enchantment limit
+                    meta.addEnchant(Enchantment.getByKey(NamespacedKey.minecraft(enchantName)), enchantAmplifier, true);
+                    item.setItemMeta(meta);
+                }
+            }
+
+            // Give player item
+            player.getInventory().addItem(item);
         }
+
+        // Notify player that they have received kit
+        player.sendMessage(ChatColor.DARK_GREEN + "You have received kit " + kitName + "!");
     }
 }

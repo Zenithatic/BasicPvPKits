@@ -10,7 +10,7 @@ public class KitsCommand implements CommandExecutor {
 
     // Declare variables
     private FileConfiguration pluginConfig;
-    private String kitString = "AxeKit, SwordKit";
+    private String kitString = "AxeKit, SwordKit, BowKit, CrossbowKit, TankKit";
 
     // Constructor for the KitsCommand class
     public KitsCommand(FileConfiguration pluginConfig){

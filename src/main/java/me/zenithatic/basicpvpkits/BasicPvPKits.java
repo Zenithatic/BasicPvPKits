@@ -6,6 +6,7 @@ import me.zenithatic.basicpvpkits.commands.KitCommand;
 import me.zenithatic.basicpvpkits.commands.KitsCommand;
 import me.zenithatic.basicpvpkits.listeners.ServerTrafficListener;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.*;
 import org.bukkit.plugin.java.JavaPlugin;
