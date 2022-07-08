@@ -20,12 +20,15 @@ public class KitRestriction implements Listener {
         }
     }
 
+    // Method to add players to cooldown list
     public static void putOnCooldown(Player player){
         cooldownList.add(player);
     }
 
+    // Listen for event
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event){
+        // Take player off cooldown
         if (cooldownList.contains(event.getEntity())){
             cooldownList.remove(event.getEntity());
         }

@@ -104,6 +104,9 @@ public class KitCommand implements CommandExecutor {
         // Get kit items from config.yml
         List<String> itemList = pluginConfig.getStringList(configKitName);
 
+        // Determine whether items should be destroyed on death in config
+        boolean destroyItemOnDeath = pluginConfig.getBoolean("RemoveKitItemsOnDeath");
+
         // Loop through and give items
         for (int i = 0; i < itemList.size(); i++){
             // Get item name and amount (0 = name, 1 = amount)
@@ -130,17 +133,21 @@ public class KitCommand implements CommandExecutor {
                 }
             }
 
-            // Make items disappear on death to prevent hybrids
-            ItemMeta meta = item.getItemMeta();
-            meta.addEnchant(Enchantment.VANISHING_CURSE, 1, true);
-            item.setItemMeta(meta);
+            // Make items disappear on death to prevent hybrids if enabled in config
+            if (destroyItemOnDeath){
+                ItemMeta meta = item.getItemMeta();
+                meta.addEnchant(Enchantment.VANISHING_CURSE, 1, true);
+                item.setItemMeta(meta);
+            }
 
             // Give player item
             player.getInventory().addItem(item);
         }
 
         // Place player on cooldown
-        KitRestriction.putOnCooldown(player);
+        if (pluginConfig.getBoolean("EnableKits")){
+            KitRestriction.putOnCooldown(player);
+        }
 
         // Notify player that they have received kit
         player.sendMessage(ChatColor.DARK_GREEN + "You have received kit " + kitName + "!");

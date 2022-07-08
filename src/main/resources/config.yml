@@ -6,6 +6,8 @@ EnableEChestCommand: true
 EnableDieCommand: true
 EnableKits: true
 OneKitPerLife: true
+RemoveKitItemsOnDeath: true
+PreventPlayerFromDroppingKitItems: true
 AxeKitItems:
   - 'iron_axe 1'
   - 'cooked_beef 16'
