@@ -3,6 +3,7 @@ package me.zenithatic.basicpvpkits.listeners;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.entity.PlayerDeathEvent;
+
 import java.util.*;
 
 public class KitRestriction implements Listener {

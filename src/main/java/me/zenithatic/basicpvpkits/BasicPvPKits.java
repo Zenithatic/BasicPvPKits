@@ -9,8 +9,6 @@ import me.zenithatic.basicpvpkits.listeners.PlayerDropItemListener;
 import me.zenithatic.basicpvpkits.listeners.ServerTrafficListener;
 import org.bukkit.Bukkit;
 import org.bukkit.event.*;
-import org.bukkit.event.block.BlockDropItemEvent;
-import org.bukkit.event.entity.EntityDropItemEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class BasicPvPKits extends JavaPlugin implements Listener {

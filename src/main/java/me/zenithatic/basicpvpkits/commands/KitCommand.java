@@ -9,11 +9,10 @@ import org.bukkit.command.*;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import javax.lang.model.element.Name;
+import java.util.ArrayList;
 import java.util.List;
 
 public class KitCommand implements CommandExecutor {
@@ -127,6 +126,7 @@ public class KitCommand implements CommandExecutor {
 
                     // Apply enchants
                     ItemMeta meta = item.getItemMeta();
+
                     // true means bypass the enchantment limit in vanilla, false means follow the enchantment limit
                     meta.addEnchant(Enchantment.getByKey(NamespacedKey.minecraft(enchantName)), enchantAmplifier, true);
                     item.setItemMeta(meta);
@@ -139,6 +139,13 @@ public class KitCommand implements CommandExecutor {
                 meta.addEnchant(Enchantment.VANISHING_CURSE, 1, true);
                 item.setItemMeta(meta);
             }
+
+            // Add lore to item to tag it
+            ArrayList<String> lore = new ArrayList<>();
+            lore.add("BasicKitPvPItem");
+            ItemMeta meta = item.getItemMeta();
+            meta.setLore(lore);
+            item.setItemMeta(meta);
 
             // Give player item
             player.getInventory().addItem(item);
