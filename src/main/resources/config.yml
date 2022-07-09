@@ -9,6 +9,7 @@ OneKitPerLife: true
 RemoveKitItemsOnDeath: true
 PreventPlayerFromDroppingKitItems: true
 PreventPlayerFromStoringKitItemsInChests: true
+PreventPlayersFromCraftingWithKitItems: true
 AxeKitItems:
   - 'iron_axe 1'
   - 'cooked_beef 16'
@@ -24,10 +25,10 @@ SwordKitItems:
   - 'cooked_beef 16'
   - 'golden_apple 1'
   - 'shield 1'
-  - 'diamond_helmet 1'
-  - 'diamond_chestplate 1'
-  - 'diamond_leggings 1'
-  - 'diamond_boots 1'
+  - 'iron_helmet 1 protection-1'
+  - 'iron_chestplate 1 protection-1'
+  - 'iron_leggings 1 protection-1'
+  - 'iron_boots 1 protection-1'
 BowKitItems:
   - 'bow 1 power-2 infinity-1 unbreaking-1'
   - 'golden_axe 1 unbreaking-3'

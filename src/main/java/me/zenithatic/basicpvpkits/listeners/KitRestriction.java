@@ -8,12 +8,12 @@ import java.util.*;
 
 public class KitRestriction implements Listener {
 
-    // Create list of players on cooldown
-    private static ArrayList<Player> cooldownList = new ArrayList<>();
+    // Create list of player names on cooldown
+    private static ArrayList<String> cooldownList = new ArrayList<>();
 
     // Method to check if a player is on life cooldown
     public static boolean isOnCooldown(Player player){
-        if (cooldownList.contains(player)){
+        if (cooldownList.contains(player.getDisplayName())){
             return true;
         }
         else{
@@ -23,15 +23,15 @@ public class KitRestriction implements Listener {
 
     // Method to add players to cooldown list
     public static void putOnCooldown(Player player){
-        cooldownList.add(player);
+        cooldownList.add(player.getDisplayName());
     }
 
     // Listen for event
     @EventHandler
     public void onPlayerDeath(PlayerDeathEvent event){
         // Take player off cooldown
-        if (cooldownList.contains(event.getEntity())){
-            cooldownList.remove(event.getEntity());
+        if (cooldownList.contains(event.getEntity().getPlayer().getDisplayName())){
+            cooldownList.remove(event.getEntity().getPlayer().getDisplayName());
         }
     }
 }

@@ -1,13 +1,11 @@
 package me.zenithatic.basicpvpkits.listeners;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
-import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.inventory.*;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
@@ -52,5 +50,41 @@ public class PlayerInventoryClickListener implements Listener {
                 }
             }
         }
+    }
+
+    // Listen for event
+    @EventHandler
+    public void onPlayerPrepareCraft(PrepareItemCraftEvent e){
+        // Check if PreventPlayersFromCraftingWithKitItems is true
+        boolean cannotCraft = pluginConfig.getBoolean("PreventPlayersFromCraftingWithKitItems");
+
+        if (!cannotCraft){
+            return;
+        }
+
+        // Get items in crafting table
+        ItemStack[] items = e.getInventory().getMatrix();
+
+        // Check if there is a BasicPvPKitsItem in the list
+        for (int i = 0; i < items.length; i++){
+            ItemStack item = items[i];
+
+            // Go back if item does not exist or has no lore
+            if (item == null || item.getItemMeta() == null || item.getItemMeta().getLore() == null){
+                pass();
+            }
+            else{
+                String lore = item.getItemMeta().getLore().get(0);
+
+                if (lore.equals("BasicPvPKitsItem")){
+                    e.getInventory().setResult(null);
+                }
+            }
+        }
+
+    }
+
+    public void pass(){
+        int i = 5;
     }
 }
