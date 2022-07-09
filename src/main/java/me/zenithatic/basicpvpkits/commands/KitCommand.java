@@ -1,5 +1,6 @@
 package me.zenithatic.basicpvpkits.commands;
 
+import me.zenithatic.basicpvpkits.BasicPvPKits;
 import me.zenithatic.basicpvpkits.listeners.KitRestriction;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -11,6 +12,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -142,7 +145,7 @@ public class KitCommand implements CommandExecutor {
 
             // Add lore to item to tag it
             ArrayList<String> lore = new ArrayList<>();
-            lore.add("BasicKitPvPItem");
+            lore.add("BasicPvPKitsItem");
             ItemMeta meta = item.getItemMeta();
             meta.setLore(lore);
             item.setItemMeta(meta);

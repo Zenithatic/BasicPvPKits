@@ -34,7 +34,7 @@ public class PlayerDropItemListener implements Listener {
                 // go back if no lore found
                 return;
             }
-            else if (item.getItemMeta().getLore().size() != 0 && item.getItemMeta().getLore().get(0).equals("BasicKitPvPItem")){
+            else if (item.getItemMeta().getLore().size() != 0 && item.getItemMeta().getLore().get(0).equals("BasicPvPKitsItem")){
                 // Cancel dropping
                 e.setCancelled(true);
                 player.sendMessage(ChatColor.RED + "You may not drop kit items.");
